@@ -1,0 +1,17 @@
+.titleJumbotron {
+    color: white;
+    background-color: #005cbf;
+    margin: 5% 5% 0;
+}
+
+#aboutFieldset {
+    margin: 5%;
+}
+
+#howFieldset {
+    margin: 0 5% 0;
+}
+
+.required {
+    color: red;
+}
