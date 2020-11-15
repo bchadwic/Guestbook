@@ -1,3 +1,23 @@
+
+<?php
+
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+$database = "bchadwi1_grc";
+$username = "bchadwi1_grcuser";
+$password = "JheZQG7B8fG2VW9";
+$hostname = "localhost";
+
+$cnxn = @mysqli_connect($hostname, $username, $password, $database)
+or die("There was a problem");
+
+
+?>
+
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -18,9 +38,9 @@
         <h1 class="jumbotron text-center display-3 titleJumbotron">Ben Chadwick</h1>
 
         <!-- Make a form section to take in all information pertaining to the person -->
+        <form id="infoForm" action="confirmation.php" method="post">
         <fieldset class="form-group border p-2 shadow p-3 mb-5 bg-white rounded" id="aboutFieldset">
             <legend>Who are you?</legend>
-            <form>
                 <div class="form-group">
                     <label for="fName">First Name</label>
                     <span id="requiredfName" class="d-none required">*required</span>
@@ -53,13 +73,11 @@
                     <span id="requiredCorrectLinkedIn" class="d-none required">*please enter a valid LinkedIn URL</span>
                     <input type="text" class="form-control" name="linkedIn" id="linkedIn">
                 </div>
-            </form>
         </fieldset>
 
         <!-- Make a form section that asks how I met them -->
         <fieldset class="form-group border p-2 shadow p-3 mb-5 bg-white rounded" id="howFieldset">
             <legend>How did we meet?</legend>
-            <form id="infoForm" action="confirmation.php" method="post">
                 <!-- Make a drop down menu that is responsive -->
                 <div class="form-group">
                     <label for="meetType">Where did we meet?</label>
@@ -93,8 +111,8 @@
                     <label for="text">Text</label><br>
                     <input class="btn btn-primary" type="submit" value="Submit">
                 </div>
-            </form>
         </fieldset>
+        </form>
 
         <!-- import scripts -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
