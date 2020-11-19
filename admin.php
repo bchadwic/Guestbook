@@ -32,7 +32,7 @@ or die("There was a problem");
 
 
 <h1 class="jumbotron titleJumbotron">Admin Page</h1>
-<div class="container" id="main">
+<div class="container d-flex justify-content-center" id="main">
     <table id="guestbook-table" class="display" style="width:80%">
         <thead>
         <tr>
@@ -40,7 +40,6 @@ or die("There was a problem");
             <td>First Name</td>
             <td>Last Name</td>
             <td>Email</td>
-            <td>Phone</td>
             <td>Job Title</td>
             <td>Company</td>
             <td>LinkedIn</td>
@@ -59,7 +58,6 @@ or die("There was a problem");
             $firstName = $row['FirstName'];
             $lastName = $row['LastName'];
             $email = $row['Email'];
-            $phone = $row['Phone'];
             $jobTitle = $row['JobTitle'];
             $company = $row['Company'];
             $linkedIn = $row['LinkedIn'];
@@ -73,7 +71,6 @@ or die("There was a problem");
                 echo "<td>$firstName</td>";
                 echo "<td>$lastName</td>";
                 echo "<td>$email</td>";
-                echo "<td>$phone</td>";
                 echo "<td>$jobTitle</td>";
                 echo "<td>$company</td>";
                 echo "<td>$linkedIn</td>";
@@ -88,6 +85,12 @@ or die("There was a problem");
 
 </div>
 
+<div class="container d-flex justify-content-center mb-5">
+    <a href="index.php" class="btn btn-primary" role="button">Form</a>
+</div>
+
+
+
 <script crossorigin="anonymous" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script crossorigin="anonymous" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
@@ -97,8 +100,15 @@ or die("There was a problem");
 
 <script src="//cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
 <script>
-    $('#guestbook-table').DataTable();
+
+    $(document).ready(function() {
+        $('#guestbook-table').DataTable( {
+            "order": [[ 1, "desc" ]]
+        } );
+    } );
+
 </script>
+
 
 
 
