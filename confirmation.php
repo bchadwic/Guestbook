@@ -45,16 +45,21 @@ $company = $_POST['company'];
 $linkedIn = $_POST['linkedIn'];
 $meet = $_POST['meetType'];
 $comment = $_POST['commentArea'];
-$mailCheck = $_POST['mailCheck'];
 
 
+if(isset($_POST['mailCheck'])){
+        $mailCheck = $_POST['mail'];
+} else {
+    $mailCheck = "No";
+}
 
-if($meet.value == "3") {
+if($meet == "3") {
     $meet = $_POST['other'];
 }
 
-$sql = "INSERT INTO `guestbook`(`FirstName`, `LastName`, `Email`, `JobTitle`, `Company`, `LinkedIn`, `MeetType`, `Comment`)
-                        VALUES ('$fname','$lname','$email','$jobTitle','$company','$linkedIn','$meet','$comment')";
+
+$sql = "INSERT INTO guestbook(`FirstName`, `LastName`, `Email`, `JobTitle`, `Company`, `LinkedIn`, `MeetType`, `Comment`,`MailList`)
+                        VALUES ('$fname','$lname','$email','$jobTitle','$company','$linkedIn','$meet','$comment','$mailCheck')";
 
 $success = mysqli_query($cnxn, $sql);
 if(!$success) {
