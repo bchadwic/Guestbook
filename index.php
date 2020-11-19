@@ -85,10 +85,10 @@ or die("There was a problem");
                     <!-- if other is chosen the below other comment section will display -->
                     <select id="meetType" name="meetType" onchange="checkOption()">
                         <option value="0">-- Select --</option>
-                        <option value="1">Meetup</option>
-                        <option value="2">Job Fair</option>
+                        <option value="Meetup">Meetup</option>
+                        <option value="Job Fair">Job Fair</option>
                         <option value="3">Other</option>
-                        <option value="4">We haven't met before</option>
+                        <option value="No meet">We haven't met before</option>
                     </select>
                 </div>
                 <!-- responsive other comment section -->
@@ -105,12 +105,14 @@ or die("There was a problem");
                     <label for="mailCheck"> Please add me to your mailing list!</label>
                 </div>
                 <div class="form-group">
-                    <input type="radio" name="mail" id="html">
+                    <input type="radio" name="mail" id="html" value="html">
                     <label for="html" class="mr-4">HTML</label>
-                    <input type="radio" name="mail" id="text">
+                    <input type="radio" name="mail" id="text" value="text">
                     <label for="text">Text</label><br>
                     <input class="btn btn-primary" type="submit" value="Submit">
+                    <span><a href="admin.php" class="btn btn-primary" role="button">Admin</a></span>
                 </div>
+
         </fieldset>
         </form>
 
