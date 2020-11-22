@@ -1,8 +1,8 @@
 
 <?php
-
+/*
 ini_set('display_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL);*/
 
 $database = "bchadwi1_grc";
 $username = "bchadwi1_grcuser";
@@ -12,8 +12,9 @@ $hostname = "localhost";
 $cnxn = @mysqli_connect($hostname, $username, $password, $database)
 or die("There was a problem");
 
-
+require('functions.php');
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -37,14 +38,47 @@ or die("There was a problem");
 
 <?php
 
-$fname = $_POST['fName'];
-$lname = $_POST['lName'];
-$email = $_POST['email'];
+
 $jobTitle = $_POST['jTitle'];
 $company = $_POST['company'];
-$linkedIn = $_POST['linkedIn'];
-$meet = $_POST['meetType'];
 $comment = $_POST['commentArea'];
+
+
+$isValid = true;
+
+if(!empty($_POST['fName'])){
+    $fname = $_POST['fName'];
+} else {
+    $isValid = false;
+    echo "<h4 class='text-center'>Please enter a first name</h4>";
+}
+
+if(!empty($_POST['lName'])){
+    $lname = $_POST['lName'];
+} else {
+    $isValid = false;
+    echo "<h4 class='text-center'>Please enter a last name</h4>";
+}
+
+$email = "";
+
+if(!(!isset($_POST['mailCheck']) && $_POST['email'] == "")){
+    if(!validMail($_POST['email'])){
+        echo "<h4 class='text-center'>Please put in a valid email</h4>";
+        $isValid = false;
+    } else {
+        $email = $_POST['email'];
+    }
+} else {
+    $email = $_POST['email'];
+}
+
+if(validLinkedIn($_POST['linkedIn'])){
+    $linkedIn = $_POST['linkedIn'];
+} else {
+    echo "<h4 class='text-center'>Please enter a valid LinkedIn link</h4>";
+    $isValid = false;
+}
 
 
 if(isset($_POST['mailCheck'])){
@@ -53,13 +87,47 @@ if(isset($_POST['mailCheck'])){
     $mailCheck = "No";
 }
 
-if($meet == "3") {
-    $meet = $_POST['other'];
+$meetType = $_POST['meetType'];
+if($meetType == "3") {
+    if (!empty($_POST['other'])) {
+        $meetType = $_POST['other'];
+        } else {
+            echo "<h4 class='text-center'>Please enter a valid meet type</h4>";
+            $isValid = false;
+        }
+}  else if (validMeetType($meetType)){
+    $meetType = $_POST['meetType'];
+} else {
+    echo "<h4 class='text-center'>Please enter a valid meet type</h4>";
+    $isValid = false;
 }
 
+$fname = mysqli_real_escape_string($cnxn, $fname);
+$lname = mysqli_real_escape_string($cnxn, $lname);
+$job_title = mysqli_real_escape_string($cnxn, $jobTitle);
+$company = mysqli_real_escape_string($cnxn, $company);
+$linked = mysqli_real_escape_string($cnxn, $linkedIn);
+$email = mysqli_real_escape_string($cnxn, $email);
+$meet = mysqli_real_escape_string($cnxn, $meetType);
+$message = mysqli_real_escape_string($cnxn, $comment);
+$mailing = mysqli_real_escape_string($cnxn, $email);
+
+if(!$isValid){
+    return;
+} else {
+    echo "<h4 class='text-center'>First name is $fname<h4>";
+    echo "<h4 class='text-center'>Last name is $lname<h4>";
+    echo "<h4 class='text-center'>Email is $email<h4>";
+    echo "<h4 class='text-center'>Job is $jobTitle<h4>";
+    echo "<h4 class='text-center'>Company is $company<h4>";
+    echo "<h4 class='text-center'>Linkedin is $linkedIn<h4>";
+    echo "<h4 class='text-center'>Meet type is $meetType<h4>";
+    echo "<h4 class='text-center'>Comment is $comment<h4>";
+    echo "<h4 class='text-center'>Mail check is $mailCheck<h4>";
+}
 
 $sql = "INSERT INTO guestbook(`FirstName`, `LastName`, `Email`, `JobTitle`, `Company`, `LinkedIn`, `MeetType`, `Comment`,`MailList`)
-                        VALUES ('$fname','$lname','$email','$jobTitle','$company','$linkedIn','$meet','$comment','$mailCheck')";
+                        VALUES ('$fname','$lname','$email','$jobTitle','$company','$linkedIn','$meetType','$comment','$mailCheck')";
 
 $success = mysqli_query($cnxn, $sql);
 if(!$success) {
