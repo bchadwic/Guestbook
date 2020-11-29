@@ -5,6 +5,6 @@
   
 <p>This website takes in information from people I may or may not have met, in hopes that I can help network with other people in the community. If you haven't met me yet add your information into the form and I will try to get back to you as soon as possible.</p>
 
-<p>Preview of the admin page</p>
+<span>Preview of the admin page:</span>
 
 ![alt text](https://github.com/bchadwic/guestbook/blob/main/adminpage.PNG?raw=true)
