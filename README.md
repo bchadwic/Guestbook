@@ -5,4 +5,4 @@
   
 <p>This website takes in information from people I may or may not have met, in hopes that I can help network with other people in the community. If you haven't met me yet add your information into the form and I will try to get back to you as soon as possible.</p>
 
-![alt text](https://github.com/bchadwic/triangle-illusion/blob/main/adminpage?raw=true)
+![alt text](https://github.com/bchadwic/guestbook/blob/main/adminpage.PNG?raw=true)
